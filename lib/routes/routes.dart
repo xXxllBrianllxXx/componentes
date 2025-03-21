@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:componentes/models/routes.dart';
 
 // Screens
+import 'package:componentes/screens/home.dart';
+import 'package:componentes/screens/cards.dart';
+import 'package:componentes/screens/avatar.dart';
 
 class AppRoutes {
 
@@ -14,20 +17,20 @@ class AppRoutes {
 			name: 'Cards',
 			icon: Icons.card_membership,
 			route: 'card',
-			screen: Container(child: Text('Página de Cards')),
+			screen: const CardScreen(),
 		),
 		MenuOptions(
 			name: 'Avatars',
 			icon: Icons.supervised_user_circle_outlined,
 			route: 'avatar',
-			screen: Container(child: Text('Página de Avatars')),
+			screen: const AvatarScreen(),
 		)
 	];
 
 	static Map<String, Widget Function(BuildContext)> getRoutes() {
 		Map<String, Widget Function(BuildContext)> appRoutes = {};
 
-		appRoutes.addAll({'home': (BuildContext context) => Container(child: Text('Página de Home'))});
+		appRoutes.addAll({'home': (BuildContext context) => HomeScreen()});
 
 		for (var option in menuOptions) {
 			appRoutes.addAll({option.route: (BuildContext context) => option.screen});
@@ -38,7 +41,7 @@ class AppRoutes {
 
 	static Route<dynamic> onGenerateRoute(RouteSettings settings) {
 		return MaterialPageRoute(
-			builder: (context) => Container(child: Text('Página no encontrada')),
+			builder: (context) => Container(child: const Text('Página no encontrada')),
 		);
 	}
 }
